@@ -1,0 +1,36 @@
+server:
+  port: 8088
+spring:
+  config:
+    activate:
+      on-profile:
+        - test
+  cloud:
+    config:
+      name: ${spring.application.name},global
+      enabled: false
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            exposedHeaders : "csrf-token,csrf-session"
+      routes:
+        - id: USER-MGT-SERVICE
+          uri: lb://user-mgt-service
+          predicates:
+            - Path=/user-mgt-service/**
+        - id: SALES-MGT-SERVICE
+          uri: lb://sales-mgt-service
+          predicates:
+            - Path=/sales-mgt-service/**
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
