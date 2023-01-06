@@ -1,10 +1,10 @@
-package com.leduyminh.serverdiscoveryservice;
+package com.leduyminh.serverdiscovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServerDiscoveryServiceApplicationTests {
+class ServerDiscoveryApplicationTests {
 
 	@Test
 	void contextLoads() {

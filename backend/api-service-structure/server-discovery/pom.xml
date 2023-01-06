@@ -9,22 +9,34 @@
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.leduyminh</groupId>
-	<artifactId>server-discovery-service</artifactId>
+	<artifactId>server-discovery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>server-discovery-service</name>
-	<description>Server Discovery</description>
+	<name>server-discovery</name>
+	<description>Discovery server</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>2021.0.5</spring-cloud.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.leduyminh</groupId>
-			<artifactId>commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
