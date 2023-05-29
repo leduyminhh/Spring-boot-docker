@@ -1,6 +1,7 @@
 package com.leduyminh.commons.utils;
 
 import com.leduyminh.commons.dtos.DataResponse;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -136,9 +137,9 @@ public class BusinessCommon {
         if (saltValue != null) {
             digestInput = password + saltValue;
         }
-        MessageDigest dgst = MessageDigest.getInstance(DIGEST_FUNCTION);
-        byte[] byteValue = dgst.digest(digestInput.getBytes());
-        password = org.apache.tomcat.util.codec.binary.Base64.encodeBase64String(byteValue);
+        MessageDigest mDigest = MessageDigest.getInstance(DIGEST_FUNCTION);
+        byte[] byteValue = mDigest.digest(digestInput.getBytes());
+        password = Base64.encodeBase64String(byteValue);
         return password;
     }
 }

@@ -1,6 +1,6 @@
 package com.leduyminh.userservice.config.security;
 
-import com.leduyminh.commons.utils.JwtTokenUtil;
+import com.leduyminh.commons.utils.JwtTokenUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -26,7 +26,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private final String PREFIX = "Bearer ";
 
     @Autowired
-    JwtTokenUtil tokenUtil;
+    JwtTokenUtils tokenUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 String username = tokenUtil.getUsernameFromToken(authToken);
                 if (tokenUtil.validateToken(authToken, username)) {
                     Claims claims = tokenUtil.getAllClaimsFromToken(authToken);
-                    List<String> roles = claims.get(JwtTokenUtil.AUTHORITIES_KEY, List.class);
+                    List<String> roles = claims.get(JwtTokenUtils.AUTHORITIES_KEY, List.class);
                     List authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
                     UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, "", authorities);
                     SecurityContextHolder.getContext().setAuthentication(auth);

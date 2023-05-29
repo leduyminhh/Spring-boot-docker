@@ -12,6 +12,7 @@ public class AcceptHeaderResolver extends AcceptHeaderLocaleResolver {
 
     List<Locale> LOCALES = Arrays.asList(new Locale("vi"),new Locale("en"));
 
+    // set locale by Accept-Language
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         if (StringUtils.isEmpty(request.getHeader("Accept-Language"))) {

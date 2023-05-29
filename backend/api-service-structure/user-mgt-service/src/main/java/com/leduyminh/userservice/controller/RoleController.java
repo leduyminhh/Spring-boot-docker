@@ -20,6 +20,6 @@ public class RoleController extends BaseController{
     @PostMapping(value = "")
     public ResponseEntity<DataResponse> createOrUpdate(@RequestBody RoleRequest request) {
         Role result = roleService.createOrUpdate(request);
-        return BusinessCommon.createResponse(result, super.getMessage("message_action_success_commons"), HttpStatus.OK);
+        return BusinessCommon.createResponse(result, super.getMessage("message.action.success.commons"), HttpStatus.OK);
     }
 }

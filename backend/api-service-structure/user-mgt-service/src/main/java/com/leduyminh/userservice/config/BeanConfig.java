@@ -1,7 +1,11 @@
 package com.leduyminh.userservice.config;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leduyminh.commons.utils.JwtTokenUtil;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.leduyminh.commons.utils.JwtTokenUtils;
+import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,25 +15,34 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.TimeZone;
 
 @Configuration
 public class BeanConfig {
 
     @Bean
-    public JwtTokenUtil tokenUtil() {
-        return new JwtTokenUtil();
+    public JwtTokenUtils tokenUtil() {
+        return new JwtTokenUtils();
     }
 
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         return mapper;
     }
 
     @Bean
     public ObjectMapper objectMapper() {
-        return new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+//        objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        return objectMapper;
     }
 
     @Bean

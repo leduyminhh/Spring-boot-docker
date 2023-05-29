@@ -1,7 +1,8 @@
 package com.leduyminh.userservice.request.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class AccountRequest {
 
     private Long id;
+    @NotNull(message = "Họ và tên không được để trống")
     private String fullName;
     private String username;
     private String password;
