@@ -1,6 +1,5 @@
 package com.leduyminh.userservice.config;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -14,6 +13,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import com.leduyminh.tracking.utils.TrackingHistoryUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -74,5 +74,10 @@ public class BeanConfig {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(source);
         return bean;
+    }
+
+    @Bean
+    public TrackingHistoryUtils getTrackingHistoryUtils() {
+        return TrackingHistoryUtils.builder().messageSource(messageSource()).modelMapper(modelMapper()).build();
     }
 }

@@ -2,16 +2,16 @@ package com.leduyminh.userservice.dtos.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leduyminh.commons.validator.annotation.FieldNotNullAndBlank;
+import com.leduyminh.userservice.entities.Role;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class AccountDTO {
 
     private Long id;
-
-    @FieldNotNullAndBlank(message = "{message.validator.fullName.notNullAndBlank}")
     private String fullName;
     private String username;
     private String email;
@@ -23,7 +23,5 @@ public class AccountDTO {
     private Long salary;
     private Integer active;
     private Integer deleted;
-
-    @JsonIgnore
-    private String password;
+    private List<Role> roles;
 }

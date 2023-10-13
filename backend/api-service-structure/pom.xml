@@ -23,6 +23,7 @@
         <json>20210307</json>
         <junit-jupiter.version>5.7.2</junit-jupiter.version>
         <mockito.version>4.6.1</mockito.version>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <modules>
@@ -31,6 +32,7 @@
         <module>server-discovery</module>
         <module>user-mgt-service</module>
         <module>sales-mgt-service</module>
+        <module>tracking-utils</module>
     </modules>
 
     <dependencies>
@@ -53,14 +55,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${json}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

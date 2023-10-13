@@ -25,11 +25,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(corsFilter, SessionManagementFilter.class)
                 .httpBasic().disable().formLogin().disable()
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class).authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .antMatchers(HttpMethod.POST,
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(
+                        HttpMethod.POST,
                         "/accounts/authenticate",
                         "/roles",
-                        "/accounts").permitAll()
+                        "/accounts"
+                ).permitAll()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/accounts/find-by-id"
+                ).permitAll()
+
                 .anyRequest().authenticated();
     }
 }

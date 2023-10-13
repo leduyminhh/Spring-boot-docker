@@ -1,6 +1,7 @@
 package com.leduyminh.userservice.service.impl;
 
 import com.leduyminh.commons.utils.BusinessCommon;
+import com.leduyminh.userservice.dtos.account.AccountDTO;
 import com.leduyminh.userservice.dtos.account.AccountLoginDTO;
 import com.leduyminh.userservice.entities.Account;
 import com.leduyminh.userservice.entities.Role;
@@ -41,52 +42,68 @@ public class AccountManagementServiceImpl implements AccountManagementService {
 
     @Override
     public Account createOrUpdate(AccountRequest request) {
-        Account account;
+        Account rs = null;
         List<Long> roleIds = request.getRoleIds();
         List<Role> roles = new ArrayList<>();
 
-        account = modelMapper.map(request, Account.class);
+        try {
+            Account account = modelMapper.map(request, Account.class);
 
-        if (request.getId() == null) {
-            // generate password + random salt value SHA-256
-            try {
-                String saltValue = UUID.randomUUID().toString();
-                String hashedPassword = BusinessCommon.preparePassword(request.getPassword(), saltValue);
-
-                account.setPassword(hashedPassword);
-                account.setSaltValue(saltValue);
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Account oldAccount = accountManagementRepo.findById(request.getId()).get();
-            // update password if change
-            try {
-                String hashedUpdatePassword = BusinessCommon.preparePassword(request.getPassword(), oldAccount.getSaltValue());
-                if (!hashedUpdatePassword.equals(oldAccount.getPassword())) {
-                    String saltValueNew =  UUID.randomUUID().toString();
-                    String hashedPassword = BusinessCommon.preparePassword(request.getPassword(), saltValueNew);
+            if (request.getId() == null) {
+                // generate password + random salt value SHA-256
+                try {
+                    String saltValue = UUID.randomUUID().toString();
+                    String hashedPassword = BusinessCommon.preparePassword(request.getPassword(), saltValue);
 
                     account.setPassword(hashedPassword);
-                    account.setSaltValue(saltValueNew);
+                    account.setSaltValue(saltValue);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
                 }
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
+            } else {
+                Account oldAccount = accountManagementRepo.findById(request.getId()).get();
+                // update password if change
+                try {
+                    String hashedUpdatePassword = BusinessCommon.preparePassword(request.getPassword(), oldAccount.getSaltValue());
+                    if (!hashedUpdatePassword.equals(oldAccount.getPassword())) {
+                        String saltValueNew = UUID.randomUUID().toString();
+                        String hashedPassword = BusinessCommon.preparePassword(request.getPassword(), saltValueNew);
+
+                        account.setPassword(hashedPassword);
+                        account.setSaltValue(saltValueNew);
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
             }
+
+            if (roleIds != null) {
+                roleIds.forEach(roleId -> {
+                    Role role = roleRepo.findById(roleId).orElse(null);
+                    if (role != null) {
+                        roles.add(role);
+                    }
+                });
+            }
+
+            account.setRoles(roles);
+            rs = accountManagementRepo.save(account);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
-        if (roleIds != null) {
-            roleIds.forEach(roleId -> {
-                Role role = roleRepo.findById(roleId).orElse(null);
-                if (role != null) {
-                    roles.add(role);
-                }
-            });
+        return rs;
+    }
+
+    @Override
+    public AccountDTO findById(Long id) {
+        AccountDTO result = null;
+        Account account = accountManagementRepo.findById(id).orElse(null);
+
+        if (account != null) {
+            result = modelMapper.map(account, AccountDTO.class);
         }
 
-        account.setRoles(roles);
-        account = accountManagementRepo.save(account);
-
-        return account;
+        return result;
     }
 }

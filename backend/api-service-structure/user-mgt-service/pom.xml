@@ -8,6 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.leduyminh</groupId>
     <artifactId>user-mgt-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -16,9 +17,22 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <tracking-utils.version>1.0</tracking-utils.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.leduyminh</groupId>
+            <artifactId>tracking-utils</artifactId>
+            <version>${tracking-utils.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.leduyminh</groupId>
+            <artifactId>commons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -29,11 +43,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>com.leduyminh</groupId>
-            <artifactId>commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>tracking-utils</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

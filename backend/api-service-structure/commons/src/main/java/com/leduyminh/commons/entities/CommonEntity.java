@@ -1,21 +1,25 @@
 package com.leduyminh.commons.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Auditable {
+public class CommonEntity implements Serializable {
+
+    protected Integer active = 1;
+    protected Integer deleted = 0;
 
     @Column(updatable = false)
     @CreatedBy

@@ -1,14 +1,13 @@
 package com.leduyminh.userservice.entities;
 
-import com.leduyminh.commons.entities.Auditable;
+import com.leduyminh.commons.entities.CommonEntity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Data
-public class Role extends Auditable implements Serializable {
+public class Role extends CommonEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,6 +15,4 @@ public class Role extends Auditable implements Serializable {
 
     private String name;
     private String description;
-    private Integer active;
-    private Integer deleted;
 }

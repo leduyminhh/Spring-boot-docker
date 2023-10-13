@@ -1,7 +1,7 @@
 package com.leduyminh.userservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.leduyminh.commons.entities.Auditable;
+import com.leduyminh.commons.entities.CommonEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Account extends Auditable implements Serializable {
+public class Account extends CommonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,8 +31,6 @@ public class Account extends Auditable implements Serializable {
     private Date issuedDate;
     private Date dob;
     private Long salary;
-    private Integer active;
-    private Integer deleted;
     private String saltValue;
 
     @ManyToMany
