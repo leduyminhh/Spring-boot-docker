@@ -1,0 +1,5 @@
+FROM apache/beam_java17_sdk
+EXPOSE 9094
+ADD ./target/file-mgt-service-0.0.1-SNAPSHOT.jar file-mgt-service.jar
+ENTRYPOINT ["java", "-jar", "file-mgt-service.jar"]
+
