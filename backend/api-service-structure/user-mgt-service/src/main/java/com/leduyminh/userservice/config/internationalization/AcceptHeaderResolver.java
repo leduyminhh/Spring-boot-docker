@@ -19,7 +19,7 @@ public class AcceptHeaderResolver extends AcceptHeaderLocaleResolver {
             return Locale.getDefault();
         }
         List<Locale.LanguageRange> list = Locale.LanguageRange.parse(request.getHeader("Accept-Language"));
-        Locale locale = Locale.lookup(list,LOCALES);
+        Locale locale = Locale.lookup(list, LOCALES);
         return locale;
     }
 }

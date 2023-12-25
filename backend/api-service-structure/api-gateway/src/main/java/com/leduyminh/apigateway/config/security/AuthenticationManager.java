@@ -1,6 +1,5 @@
 package com.leduyminh.apigateway.config.security;
 
-import com.leduyminh.apigateway.utils.JwtTokenUtil;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class AuthenticationManager implements ReactiveAuthenticationManager {
     @Autowired
-    JwtTokenUtil tokenUtil;
+    JwtTokenUtils tokenUtil;
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
@@ -25,7 +24,7 @@ public class AuthenticationManager implements ReactiveAuthenticationManager {
         String username = tokenUtil.getUsernameFromToken(authToken);
         if (tokenUtil.validateToken(authToken, username)) {
             Claims claims = tokenUtil.getAllClaimsFromToken(authToken);
-            List<String> roles = claims.get(JwtTokenUtil.AUTHORITIES_KEY, List.class);
+            List<String> roles = claims.get(tokenUtil.AUTHORITIES_KEY, List.class);
             List authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role)).collect(Collectors.toList());
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, "", authorities);
             SecurityContextHolder.getContext().setAuthentication(auth);

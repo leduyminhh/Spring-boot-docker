@@ -2,9 +2,11 @@ package com.leduyminh.userservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leduyminh.commons.entities.CommonEntity;
+import com.leduyminh.commons.enums.AuthProvider;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +34,9 @@ public class Account extends CommonEntity implements Serializable {
     private Date dob;
     private Long salary;
     private String saltValue;
+    private String provider;
+    private String providerId;
+    private String imageUrl;
 
     @ManyToMany
     @JoinTable(

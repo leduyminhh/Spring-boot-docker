@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 public class BusinessCommon {
 
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
     private static final String DIGEST_FUNCTION = "SHA-256";
     private static final String DEFAULT_USER = "superAdmin";
     private static final String DEFAULT_IP = "1.1.1.1";

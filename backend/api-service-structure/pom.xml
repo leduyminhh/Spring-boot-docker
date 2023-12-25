@@ -32,7 +32,6 @@
         <module>server-discovery</module>
         <module>user-mgt-service</module>
         <module>sales-mgt-service</module>
-        <module>tracking-utils</module>
     </modules>
 
     <dependencies>

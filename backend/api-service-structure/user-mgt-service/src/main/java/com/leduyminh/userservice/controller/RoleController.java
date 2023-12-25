@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/roles")
+@RequestMapping(value = "/admin/roles")
 public class RoleController extends BaseController{
 
     @Autowired

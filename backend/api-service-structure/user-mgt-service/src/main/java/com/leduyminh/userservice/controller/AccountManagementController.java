@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/accounts")
-public class AccountManagementController extends BaseController{
+@RequestMapping(value = "/admin/accounts")
+public class AccountManagementController extends BaseController {
 
     @Autowired
     AccountManagementService accountManagementService;
@@ -29,7 +29,7 @@ public class AccountManagementController extends BaseController{
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<DataResponse> createOrUpdate(@RequestBody @Valid AccountRequest request) {
+    public ResponseEntity<DataResponse> createOrUpdate(@RequestBody @Valid AccountRequest request) throws Exception {
         Account result = accountManagementService.createOrUpdate(request);
         return BusinessCommon.createResponse(result, super.getMessage("message.action.success.commons"), HttpStatus.OK);
     }
