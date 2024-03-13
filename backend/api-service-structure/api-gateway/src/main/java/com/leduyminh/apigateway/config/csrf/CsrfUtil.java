@@ -1,7 +1,5 @@
-package com.fpt.egov.apigateway.configs.security.csrf;
+package ;
 
-import com.fpt.egov.apigateway.constant.UriMatchersConstant;
-import com.fpt.egov.commons.utils.StringUtils;
 import org.json.JSONObject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;

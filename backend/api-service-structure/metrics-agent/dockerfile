@@ -1,0 +1,6 @@
+FROM adoptopenjdk/openjdk14
+EXPOSE 9302
+ADD ./target/metrics-agent-1.0-SNAPSHOT.jar metrics-agent.jar
+RUN apt-get update
+RUN apt install net-tools
+ENTRYPOINT ["java", "-Dserver.listen.ip=10.14.141.120", "-Dmetrics.url.create=http://10.14.141.120:9301/metrics-server/metrics" ,"-jar", "metrics-agent.jar"]

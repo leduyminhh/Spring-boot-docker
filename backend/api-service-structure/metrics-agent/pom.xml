@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.leduyminh</groupId>
+        <artifactId>api-service-structure</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>metrics-agent</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <name>metrics-agent</name>
+    <description>metrics agent</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.leduyminh</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>1.4.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <maven.compiler.target>8</maven.compiler.target>
+        <log4j2.version>2.17.1</log4j2.version>
+        <java.version>8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <schemacrawler.version>16.16.11</schemacrawler.version>
+        <skipTests>true</skipTests>
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
+    </properties>
+
+</project>

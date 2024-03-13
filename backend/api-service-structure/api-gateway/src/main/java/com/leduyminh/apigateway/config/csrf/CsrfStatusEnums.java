@@ -1,4 +1,4 @@
-package com.fpt.egov.apigateway.configs.security.csrf;
+package ;
 
 public enum CsrfStatusEnums {
 	valid(1, "CSRF_TOKEN hợp lệ"), Invalid(2, "CSRF_TOKEN không hợp lệ"),

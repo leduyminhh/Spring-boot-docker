@@ -1,4 +1,4 @@
-package com.fpt.egov.apigateway.configs.security.csrf;
+package ;
 
 import java.security.SecureRandom;
 import java.util.Base64;

@@ -32,6 +32,8 @@
         <module>server-discovery</module>
         <module>user-mgt-service</module>
         <module>sales-mgt-service</module>
+        <module>metrics-agent</module>
+        <module>metrics-server</module>
     </modules>
 
     <dependencies>
@@ -64,7 +66,6 @@
             <version>${servlet-api.version}</version>
             <scope>compile</scope>
         </dependency>
-
     </dependencies>
 
     <profiles>

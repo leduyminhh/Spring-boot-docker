@@ -1,0 +1,5 @@
+FROM adoptopenjdk/openjdk14
+EXPOSE 9301
+ADD ./target/metrics-server-1.0-SNAPSHOT.jar metrics-server.jar
+ENTRYPOINT ["java", "-jar", "metrics-server.jar"]
+

@@ -1,8 +1,5 @@
-package com.fpt.egov.apigateway.configs.security.browser;
+package com.leduyminh.apigateway.config.;
 
-import com.fpt.egov.apigateway.constant.UriMatchersConstant;
-import com.fpt.egov.commons.utils.StringUtils;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;

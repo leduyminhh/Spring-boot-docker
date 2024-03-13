@@ -1,4 +1,4 @@
-package com.fpt.egov.apigateway.configs.security.csrf;
+package ;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

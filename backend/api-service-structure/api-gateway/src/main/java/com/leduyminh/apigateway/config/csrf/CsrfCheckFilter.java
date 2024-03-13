@@ -1,4 +1,4 @@
-package com.fpt.egov.apigateway.configs.security.csrf;
+package com.leduyminh.apigateway.config.csrf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
